@@ -1,4 +1,4 @@
-#indef JOUEUR_H
+#ifndef JOUEUR_H
 #define JOUEUR_H
 
 typedef struct {
