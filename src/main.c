@@ -7,6 +7,7 @@
 int main(void)
 {
     Carte paquet[52];
+    Carte cachee;
     int position = 0;
     Joueur joueur;
     Joueur croupier;
@@ -24,11 +25,13 @@ int main(void)
     creer_paquet(paquet);
     melanger(paquet);
 
+    cachee = distribuer_croupier(&croupier, paquet, &position);
+
     tour_joueur(&joueur, paquet, &position);
 
     if (joueur.score <= 21)
     {
-       tour_croupier(&croupier, paquet, &position);
+        tour_croupier(&croupier, cachee, paquet, &position);
     }
 
     afficher_resultat(&joueur, &croupier);

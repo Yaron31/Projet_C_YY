@@ -53,12 +53,14 @@ void tour_joueur(Joueur *j, Carte paquet[], int *position)
     Carte carte;
     char choix = 'o';
     int valeur_as;
+    int nb_cartes = 0;
 
     j->score = 0;
 
     while (choix == 'o' && j->score < 21)
     {
         carte = piocher(paquet, position);
+        nb_cartes = nb_cartes + 1;
         printf("Tu as pioche : %s\n", carte.nom);
 
         if (carte.valeur == 11)
@@ -74,7 +76,7 @@ void tour_joueur(Joueur *j, Carte paquet[], int *position)
         j->score = j->score + carte.valeur;
         printf("Ton score : %d\n", j->score);
 
-        if (j->score < 21)
+        if (j->score < 21 && nb_cartes >= 2)
         {
             printf("Tu veux piocher une autre carte ? (o/n) ");
             scanf(" %c", &choix);
@@ -87,11 +89,12 @@ void tour_joueur(Joueur *j, Carte paquet[], int *position)
     }
 }
 
-void tour_croupier(Joueur *croupier, Carte paquet[], int *position)
+void tour_croupier(Joueur *croupier, Carte cachee, Carte paquet[], int *position)
 {
     Carte carte;
 
-    croupier->score = 0;
+    printf("Le croupier retourne sa carte cachee : %s\n", cachee.nom);
+    printf("Score du croupier : %d\n", croupier->score);
 
     while (croupier->score < 17)
     {
@@ -134,4 +137,25 @@ void afficher_resultat(const Joueur *j, const Joueur *croupier)
     {
         printf("Egalite !\n");
     }
+}
+
+Carte distribuer_croupier(Joueur *croupier, Carte paquet[], int *position)
+{
+    Carte visible;
+    Carte cachee;
+
+    visible = piocher(paquet, position);
+    cachee = piocher(paquet, position);
+
+    printf("Carte visible du croupier : %s\n", visible.nom);
+
+    croupier->score = visible.valeur;
+
+    if (cachee.valeur == 11 && croupier->score + 11 > 21)
+    {
+        cachee.valeur = 1;
+    }
+    croupier->score = croupier->score + cachee.valeur;
+
+    return cachee;
 }
