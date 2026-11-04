@@ -23,6 +23,7 @@ void creer_paquet(Carte paquet[])
     }
 }
 
+
 void melanger(Carte paquet[])
 {
     int i;
