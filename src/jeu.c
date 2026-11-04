@@ -61,7 +61,7 @@ void tour_joueur(Joueur *j, Carte paquet[], int *position)
     {
         carte = piocher(paquet, position);
         nb_cartes = nb_cartes + 1;
-        printf("Tu as pioché : %s\n", carte.nom);
+        printf("Tu as pioche : %s\n", carte.nom);
 
         if (carte.valeur == 11)
         {

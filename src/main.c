@@ -6,7 +6,7 @@
 
 int main(void)
 {
-    Carte paquet[52];
+    Carte *paquet;
     Carte cachee;
     int position = 0;
     Joueur joueur;
@@ -14,6 +14,13 @@ int main(void)
     char nom[20];
 
     srand(time(NULL));
+
+    paquet = malloc(52 * sizeof(Carte));
+    if (paquet == NULL)
+    {
+        printf("Erreur : pas assez de memoire\n");
+        return 1;
+    }
 
     printf("=== BLACKJACK ===\n");
     printf("Ton nom : ");
@@ -33,8 +40,14 @@ int main(void)
     {
         tour_croupier(&croupier, cachee, paquet, &position);
     }
+    else
+    {
+        printf("La carte cachee du croupier etait : %s\n", cachee.nom);
+    }
 
     afficher_resultat(&joueur, &croupier);
+
+    free(paquet);
 
     return 0;
 }
