@@ -114,8 +114,8 @@ void tour_croupier(Joueur *croupier, Carte cachee, Carte paquet[], int *position
 void afficher_resultat(const Joueur *j, const Joueur *croupier)
 {
     printf("\n--- Resultat ---\n");
-    printf("%s : %d\n", j->nom, j->score);
-    printf("%s : %d\n", croupier->nom, croupier->score);
+    joueur_afficher(j);
+    joueur_afficher(croupier);
 
     if (j->score > 21)
     {
