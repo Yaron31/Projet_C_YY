@@ -61,7 +61,7 @@ void tour_joueur(Joueur *j, Carte paquet[], int *position)
     {
         carte = piocher(paquet, position);
         nb_cartes = nb_cartes + 1;
-        printf("Tu as pioche : %s\n", carte.nom);
+        printf("Tu as pioché : %s\n", carte.nom);
 
         if (carte.valeur == 11)
         {
@@ -135,7 +135,7 @@ void afficher_resultat(const Joueur *j, const Joueur *croupier)
     }
     else
     {
-        printf("Egalite !\n");
+        printf("Tu gagnes !\n");
     }
 }
 
@@ -147,7 +147,7 @@ Carte distribuer_croupier(Joueur *croupier, Carte paquet[], int *position)
     visible = piocher(paquet, position);
     cachee = piocher(paquet, position);
 
-    printf("Carte visible du croupier : %s\n", visible.nom);
+    printf("Carte du croupier : %s\n", visible.nom);
 
     croupier->score = visible.valeur;
 
